@@ -12,6 +12,15 @@ fun main() {
     beverageTree.forEachLevelOrder {
         println(it.value)
     }
+
+    println("\n=search=")
+    beverageTree.search("ginger ale", traversalAlgorithm = TraversalAlgorithm.LEVEL_ORDER)?.let {
+        println("Found node: $it -> ${it.value}")
+    } ?: println("Node was not found")
+
+    beverageTree.search("soda", TraversalAlgorithm.DEPTH_FIRST)?.let {
+        println("Found node: $it -> ${it.value}")
+    } ?: println("Node was not found")
 }
 
 fun makeAppleTree() {
