@@ -51,6 +51,48 @@ class TreeNode<T>(val value: T) {
 
         return result
     }
+
+    /**
+     * Challenge: Print the values in a tree in an order based on their level.
+     *
+     *                          root
+     *                 /          |          \
+     *              group1      group2      group3
+     *      /      /       \      |         /    \
+     *  value1  value2  value3  value4  value5  value6
+     *
+     *
+     */
+    fun printEachLevel() {
+        val queue = ArrayListQueue<TreeNode<T>>()
+        var orderLevel = 0
+        var levelNodes = 0
+
+        if(this.children.isEmpty()) return print("Level 0: ${this.value}")
+
+        print("Level 0: ${this.value}")
+        this.children.forEach { queue.enqueue(it) }.apply {
+            levelNodes = queue.count
+        }
+
+        while(!queue.isEmpty){
+            orderLevel++
+            print("\nLevel $orderLevel:")
+
+            while (levelNodes > 0){
+                levelNodes--
+
+                val node = queue.dequeue()
+                if(node == null) return
+                print(" ${node.value},".removeSuffix(","))
+
+
+                node.children.forEach { queue.enqueue(it) }
+            }
+
+            levelNodes = queue.count
+        }
+    }
 }
 
 enum class TraversalAlgorithm {
