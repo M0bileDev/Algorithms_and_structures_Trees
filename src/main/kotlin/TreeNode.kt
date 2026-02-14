@@ -25,4 +25,35 @@ class TreeNode<T>(val value: T) {
             node = queue.dequeue()
         }
     }
+
+    fun search(value: T, traversalAlgorithm: TraversalAlgorithm): TreeNode<T>? {
+        var result: TreeNode<T>? = null
+
+        when (traversalAlgorithm) {
+            TraversalAlgorithm.DEPTH_FIRST -> {
+                forEachDepthFirst {
+                    if (it.value == value) {
+                        result = it
+                        return@forEachDepthFirst
+                    }
+                }
+            }
+
+            TraversalAlgorithm.LEVEL_ORDER -> {
+                forEachLevelOrder {
+                    if (it.value == value) {
+                        result = it
+                        return@forEachLevelOrder
+                    }
+                }
+            }
+        }
+
+        return result
+    }
+}
+
+enum class TraversalAlgorithm {
+    DEPTH_FIRST,
+    LEVEL_ORDER
 }
