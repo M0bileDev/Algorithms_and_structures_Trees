@@ -21,6 +21,9 @@ fun main() {
     beverageTree.search("soda", TraversalAlgorithm.DEPTH_FIRST)?.let {
         println("Found node: $it -> ${it.value}")
     } ?: println("Node was not found")
+
+    println("\n=challenge 1=")
+    makeNumberTree().printEachLevel()
 }
 
 fun makeAppleTree() {
@@ -71,4 +74,42 @@ fun makeBeverageTree(): TreeNode<String> {
     soda.add(bitterLemon)
 
     return tree
+}
+
+fun makeNumberTree() : TreeNode<Int>{
+    val root = TreeNode(15)
+
+    val group1 = TreeNode(1)
+    val group2 = TreeNode(17)
+    val group3 = TreeNode(20)
+
+    val value1 = TreeNode(1)
+    val value2 = TreeNode(5)
+    val value3 = TreeNode(0)
+
+    val value4 = TreeNode(2)
+
+    val value5 = TreeNode(5)
+    val value6 = TreeNode(7)
+
+    root.apply {
+        add(group1)
+        add(group2)
+        add(group3)
+    }
+
+    group1.apply {
+        add(value1)
+        add(value2)
+        add(value3)
+    }
+
+    group2.add(value4)
+
+    group3.apply {
+        add(value5)
+        add(value6)
+    }
+
+    return root
 }
