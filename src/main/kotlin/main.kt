@@ -2,7 +2,14 @@ fun main() {
 
     makeAppleTree()
     val beverageTree = makeBeverageTree()
+
+    println("\n=forEachDepthFirst=")
     beverageTree.forEachDepthFirst {
+        println(it.value)
+    }
+
+    println("\n=forEachLevelOrder=")
+    beverageTree.forEachLevelOrder {
         println(it.value)
     }
 }
